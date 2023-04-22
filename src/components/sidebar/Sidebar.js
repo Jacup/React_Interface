@@ -1,13 +1,45 @@
-import React from "react";
-import './sidebar.css'
+import React, { useState, useEffect } from "react";
+import "./sidebar.css";
+
 function Sidebar() {
+    const [fontSize, setFontSize] = useState(16);
+    const [theme, setTheme] = useState("dark");
+    const sidebarClass = `sidebar ${theme}`;
+
+    const toggleTheme = () => {
+        if (theme === "dark") {
+            setTheme("light");
+        } else {
+            setTheme("dark");
+        }
+    };
+
+
+    useEffect(() => {
+        const items = document.querySelectorAll(".item");
+        items.forEach(item => item.style.fontSize = `${fontSize}px`);
+    }, [fontSize]);
+
+    const increaseFontSize = () => {
+        setFontSize(prevFontSize => prevFontSize + 2);
+    };
+
+    const decreaseFontSize = () => {
+        setFontSize(prevFontSize => prevFontSize - 2);
+    };
+
     return (
-        <div className="sidebar">
+        <div id="sidebar" className={sidebarClass}>
             <img src="src\assets\images\logo.png" alt="LOGO"></img>
             <ul>
                 <li>
                     <a href="#" class="active">
-                        <span class="item">Dashboard</span>
+                        <span class="item">
+                            Current size: {fontSize}.<br></br>
+                            <button onClick={increaseFontSize}>+</button>
+                            <button onClick={decreaseFontSize}>-</button>
+                            <button onClick={toggleTheme}>Zmień motyw</button>
+                        </span>
                     </a>
                 </li>
                 <li>
@@ -16,29 +48,6 @@ function Sidebar() {
                     </a>
                 </li>
             </ul>
-
-            <div className="title">Pages</div>
-
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="item">Account Settings</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="item">Authentication</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="item">Misc</span>
-                    </a>
-                </li>
-            </ul>
-
-            <div className="title">Components</div>
-
 
             <ul>
                 <li>
@@ -68,5 +77,4 @@ function Sidebar() {
         </div>
     )
 }
-
 export default Sidebar

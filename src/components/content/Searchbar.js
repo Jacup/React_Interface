@@ -4,7 +4,7 @@ import './searchbar.css';
 function SearchBar() {
     return (
         <div className="sb">
-            <div>asd</div>
+            <div></div>
         </div>
     )
 }
