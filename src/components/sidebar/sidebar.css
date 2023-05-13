@@ -13,7 +13,6 @@
     color: #eee;
 }
 
-/* Styl dla jasnego motywu */
 .sidebar.light {
     background-color: #eee;
     color: #222;
@@ -70,4 +69,39 @@ a:active {
 
 .light.sidebar .title {
     color: #222;
+}
+
+/* Responsywność i collapsed na urządzeniach mobilnych */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .item {
+        padding: 10px;
+    }
+
+    .sidebar .title {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .dark.sidebar .title {
+        color: #eee;
+    }
+
+    .light.sidebar .title {
+        color: #222;
+    }
 }
