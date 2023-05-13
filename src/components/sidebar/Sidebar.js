@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./sidebar.css";
+import { Outlet, Link } from "react-router-dom";
 
 function Sidebar() {
     const [fontSize, setFontSize] = useState(16);
@@ -27,54 +28,55 @@ function Sidebar() {
     const decreaseFontSize = () => {
         setFontSize(prevFontSize => prevFontSize - 2);
     };
-
     return (
-        <div id="sidebar" className={sidebarClass}>
-            <img src="src\assets\images\logo.png" alt="LOGO"></img>
-            <ul>
-                <li>
-                    <a href="#" class="active">
-                        <span class="item">
-                            Current size: {fontSize}.<br></br>
-                            <button onClick={increaseFontSize}>+</button>
-                            <button onClick={decreaseFontSize}>-</button>
-                            <button onClick={toggleTheme}>Zmień motyw</button>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="item">Layouts</span>
-                    </a>
-                </li>
-            </ul>
+        <>
+            <div>
+                <div id="sidebar" className={sidebarClass}>
+                    <img src="src\assets\images\logo.png" alt="LOGO"></img>
+                    <ul>
+                        <li>
+                            <a href="#" class="active">
+                                <span class="item">
+                                    Current size: {fontSize}.<br></br>
+                                    <button onClick={increaseFontSize}>+</button>
+                                    <button onClick={decreaseFontSize}>-</button>
+                                    <button onClick={toggleTheme}>Zmień motyw</button>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                    </ul>
 
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="item">Cards</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="item">User Interface</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="item">Extended UI</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="item">BoxIcons</span>
-                    </a>
-                </li>
-            </ul>
+                    <ul>
+                        <li>
+                            <li>
+                                <Link to="/blog">Blog</Link>
+                            </li>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="item">User Interface</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="item">Extended UI</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="item">BoxIcons</span>
+                            </a>
+                        </li>
+                    </ul>
 
-            <div className="title">Forms & Tables</div>
-
-        </div>
+                    <div className="title">Forms & Tables</div>
+                </div>
+            </div>
+            <Outlet />
+        </>
     )
 }
 export default Sidebar
